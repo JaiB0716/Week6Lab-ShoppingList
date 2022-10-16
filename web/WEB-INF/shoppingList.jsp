@@ -15,15 +15,25 @@
     </head>
     <body>
         <h1>Shopping List</h1>
-        <h3>Hello, ${register.name} <a href="/WEB-INF/register.jsp">Logout</a></h3>
+        <h3>Hello, ${register.name} <a href="<c:url value='/ShoppingList?action=logout'/>">Logout</a></h3>
         
         <table>
             <tr>
                 <th>List</th>
             </tr>
             <tr>Add Item:</tr><tr><input type="text" name="item"></tr><tr><input type="submit" value="Add"></tr>
+            <tr><input type="hidden" name="action" value="add"></tr>
         </table>
         
-        <c:if ></c:if>
+        <form method="post" action="listItems">
+            <ul>
+                <c:forEach items="${lItems}" var="item">
+                    <input type="radio" name="item" value="${item}"> <c:out value="${item}"/><br>
+                </c:forEach>
+            </ul>
+        
+            <input type="submit" value="Remove Item">
+            <input type="hidden" name="action" value="remove">
+        </form>
     </body>
 </html>
